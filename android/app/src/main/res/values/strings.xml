@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">ksmartai2</string>
+    <string name="title_activity_main">ksmartai2</string>
+    <string name="package_name">com.ksmartai2.app</string>
+    <string name="custom_url_scheme">com.ksmartai2.app</string>
+</resources>
