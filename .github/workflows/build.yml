@@ -1,0 +1,28 @@
+name: Build Android APK
+on: [push, workflow_dispatch]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with: { java-version: '17', distribution: 'temurin' }
+        
+      - run: npm install
+      - run: npm run build
+      
+      # Capacitor Sync
+      - run: npx cap sync
+      
+      # Build APK via Gradle
+      - run: |
+          cd android
+          chmod +x gradlew
+          ./gradlew assembleDebug
+          cp app/build/outputs/apk/debug/app-debug.apk app/build/outputs/apk/debug/ksmartai.apk
+          
+      # Upload the generated APK as an artifact
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ksmartai.apk
+          path: android/app/build/outputs/apk/debug/ksmartai.apk
