@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+    <defs>
+        <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#4f46e5;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:1" />
+        </linearGradient>
+        <linearGradient id="bookGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.38" />
+            <stop offset="100%" style="stop-color:#ffffff;stop-opacity:0.1" />
+        </linearGradient>
+        <filter id="glow" x="-25%" y="-25%" width="150%" height="150%">
+            <feGaussianBlur stdDeviation="3.2" result="blur" />
+            <feComposite in="SourceGraphic" in2="blur" operator="over" />
+        </filter>
+    </defs>
+
+    <!-- Outer Rounded Shield Shape -->
+    <rect x="8" y="8" width="112" height="112" rx="28" fill="url(#shieldGrad)" />
+    
+    <!-- Subtle Inner Glow Border -->
+    <rect x="12" y="12" width="104" height="104" rx="24" fill="none" stroke="white" stroke-width="1.2" opacity="0.12" />
+
+    <!-- Refined Opened Book (Symbol of Knowledge) - Slightly smaller & Centered -->
+    <path d="M 64 88 Q 44 80 24 88 V 44 Q 44 36 64 44 Q 84 36 104 44 V 88 Q 84 80 64 88 Z" 
+          fill="url(#bookGrad)" />
+    <path d="M 64 44 V 88" stroke="white" stroke-width="1" opacity="0.2" />
+
+    <!-- Final 'S' Symbol (Dominant & Centered) -->
+    <g filter="url(#glow)">
+        <text x="50%" y="54%" 
+              text-anchor="middle" 
+              dominant-baseline="middle" 
+              font-family="'Pretendard', 'Segoe UI', sans-serif" 
+              font-weight="950" 
+              font-size="82" 
+              fill="white"
+              letter-spacing="-1">S</text>
+    </g>
+</svg>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>K-Smart AI 플랫폼 App</title>
+    <style>
+        :root { --bg: #0f172a; --primary: #8b5cf6; }
+        * { box-sizing: border-box; }
+        body, html { margin:0; padding:0; width:100%; height:100%; background:var(--bg); overflow:hidden; }
+
+        /* 프리미엄 로딩 화면 (Splash) */
+        #splash {
+            position: fixed; inset: 0; z-index: 100;
+            background: radial-gradient(circle at center, #1e1b4b, #0f172a);
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+        .logo { 
+            width: 110px; height: 110px; margin-bottom: 25px; 
+            filter: drop-shadow(0 0 15px rgba(139, 92, 246, 0.4));
+            animation: pulse 2.5s infinite; 
+        }
+        .loading-text { color: #f8fafc; font-family: sans-serif; font-size: 1.1rem; font-weight: 800; letter-spacing: 0.1rem; }
+        
+        @keyframes pulse { 0%, 100% { opacity:0.7; transform:scale(0.95); } 50% { opacity:1; transform:scale(1.05); } }
+
+        /* 실제 사이트 뷰어 (Iframe) */
+        #main-view {
+            width: 100%; height: 100%; border: none; display: none;
+            opacity: 0; transition: opacity 1.5s ease;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 앱 켜면 바로 보이는 로고 화면 -->
+    <div id="splash">
+        <img src="https://www.ksmartai.com/common/ksa_logo.svg" class="logo" alt="K-Smart Logo">
+        <div class="loading-text">K-Smart AI Environment</div>
+    </div>
+
+    <!-- 쥐도 새도 모르게 로딩되는 실제 사이트 -->
+    <iframe id="main-view" src="https://www.ksmartai.com" allow="camera; microphone; geolocation; clipboard-read; clipboard-write;"></iframe>
+
+    <script>
+        window.addEventListener('load', () => {
+            const splash = document.getElementById('splash');
+            const frame = document.getElementById('main-view');
+
+            // 2.5초 동안 멋진 로고를 보여준 뒤 사이트로 부드럽게 전환합니다.
+            setTimeout(() => {
+                splash.style.opacity = '0';
+                splash.style.transform = 'scale(1.2)';
+                frame.style.display = 'block';
+                
+                setTimeout(() => {
+                    frame.style.opacity = '1';
+                    splash.style.display = 'none';
+                }, 100);
+            }, 2500);
+        });
+    </script>
+</body>
+</html>
